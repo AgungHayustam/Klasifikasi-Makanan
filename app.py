@@ -31,13 +31,13 @@ st.divider()
 # ======================================================
 # INFORMASI UMUM MAKANAN (UI SAJA)
 # ======================================================
-st.subheader("📝 Informasi Umum Makanan")
+st.subheader("📝 Informasi Makanan")
 
 nama_makanan = st.text_input("Nama Makanan")
 
 asal_masakan = st.selectbox(
     "Asal Masakan",
-    ["Indonesia", "Asia", "Eropa", "Amerika", "Timur Tengah", "Lainnya"]
+    ["Indonesia", "Asia", "Eropa", "Amerika", "Timur Tengah"]
 )
 
 jenis_makanan = st.selectbox(
