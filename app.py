@@ -42,7 +42,7 @@ asal_masakan = st.selectbox(
 
 jenis_makanan = st.selectbox(
     "Jenis Makanan",
-    ["Makanan Utama", "Breakfast", "Cemilan", "Dinner", "Dessert"]
+    ["Makanan Utama", "Sarapan", "Cemilan", "Dinner", "Dessert"]
 )
 
 jenis_diet = st.selectbox(
