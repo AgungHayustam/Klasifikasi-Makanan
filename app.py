@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # ======================================================
-# LOAD MODEL & SCALER
+# LOAD MODEL & SCALER Tes
 # ======================================================
 model = joblib.load("model_makanan.pkl")
 scaler = joblib.load("scaler.pkl")
