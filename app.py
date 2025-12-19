@@ -3,7 +3,7 @@ import numpy as np
 import joblib
 
 # ======================================================
-# KONFIGURASI HALAMAN Tes
+# KONFIGURASI HALAMAN 
 # ======================================================
 st.set_page_config(
     page_title="Klasifikasi Makanan Sehat",
@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # ======================================================
-# LOAD MODEL & SCALER Tes
+# LOAD MODEL & SCALER 
 # ======================================================
 model = joblib.load("model_makanan.pkl")
 scaler = joblib.load("scaler.pkl")
@@ -20,7 +20,7 @@ scaler = joblib.load("scaler.pkl")
 # ======================================================
 # JUDUL APLIKASI
 # ======================================================
-st.title("Sistem Klasifikasi Makanan Sehat")
+st.title("Sistem Klasifikasi Makanan Sehat Dan Tidak Sehat")
 st.write(
     "Sistem ini mengklasifikasikan makanan **sehat** dan **tidak sehat** "
     "berdasarkan **kandungan nutrisi** menggunakan model Machine Learning."
