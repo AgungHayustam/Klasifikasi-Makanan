@@ -3,10 +3,10 @@ import numpy as np
 import joblib
 
 # ======================================================
-# KONFIGURASI HALAMAN 
+# KONFIGURASI HALAMAN TES
 # ======================================================
 st.set_page_config(
-    page_title="Klasifikasi Makanan Sehat",
+    page_title="**Klasifikasi Makanan Sehat**",
     page_icon="🥗",
     layout="centered"
 )
