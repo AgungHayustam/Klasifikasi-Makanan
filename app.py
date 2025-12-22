@@ -23,7 +23,7 @@ scaler = joblib.load("scaler.pkl")
 st.title("Sistem Klasifikasi Makanan Sehat Dan Tidak Sehat")
 st.write(
     "Sistem ini mengklasifikasikan makanan **sehat** dan **tidak sehat** "
-    "berdasarkan **kandungan nutrisi** menggunakan model Machine Learning."
+    "berdasarkan **kandungan nutrisi** menggunakan model **Machine Learning**."
 )
 
 st.divider()
