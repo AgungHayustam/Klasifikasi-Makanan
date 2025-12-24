@@ -104,7 +104,11 @@ waktu_memasak = st.sidebar.number_input(
     "Waktu Memasak (menit)", min_value=0, value=0, step=1, format="%d"
 )
 
-rating = st.sidebar.slider("Rating Makanan", 1, 5, 3)
+rating = st.sidebar.selectbox(
+    "Rating Makanan",
+    options=[1, 2, 3, 4, 5],
+    index=2
+)
 
 # ======================================================
 # MAIN CONTENT
