@@ -17,10 +17,12 @@ st.set_page_config(
 st.markdown("""
 <style>
     .title {
-        font-size: 40px;
-        font-weight: 700;
-        color: #2E7D32;
-    }
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 0px 2px 8px rgba(0,0,0,0.6);
+}
+
     .subtitle {
         font-size: 16px;
         color: #AAAAAA;
