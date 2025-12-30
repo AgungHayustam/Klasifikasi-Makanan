@@ -16,16 +16,19 @@ st.set_page_config(
 # ======================================================
 st.markdown("""
 <style>
+    body {
+        background-color: #0E1117;
+    }
     .title {
-    font-size: 40px;
-    font-weight: 700;
-    color: #FFFFFF;
-    text-shadow: 0px 2px 8px rgba(0,0,0,0.6);
-}
-
+        font-size: 40px;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-shadow: 0px 2px 8px rgba(0,0,0,0.6);
+    }
     .subtitle {
         font-size: 16px;
         color: #AAAAAA;
+        margin-bottom: 20px;
     }
     .card {
         background-color: #1E1E1E;
@@ -65,7 +68,7 @@ scaler = joblib.load("scaler.pkl")
 # ======================================================
 st.markdown('<div class="title">🥗 Sistem Klasifikasi Makanan Sehat</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="subtitle">Prediksi makanan sehat & tidak sehat berbasis kandungan nutrisi menggunakan Machine Learning</div>',
+    '<div class="subtitle">Prediksi makanan sehat dan tidak sehat berbasis kandungan nutrisi menggunakan Machine Learning</div>',
     unsafe_allow_html=True
 )
 
@@ -99,11 +102,11 @@ metode_masak = st.sidebar.selectbox(
 )
 
 waktu_persiapan = st.sidebar.number_input(
-    "Waktu Persiapan (menit)", min_value=0, value=0, step=1, format="%d"
+    "Waktu Persiapan (menit)", min_value=0, value=0, step=1
 )
 
 waktu_memasak = st.sidebar.number_input(
-    "Waktu Memasak (menit)", min_value=0, value=0, step=1, format="%d"
+    "Waktu Memasak (menit)", min_value=0, value=0, step=1
 )
 
 rating = st.sidebar.select_slider(
@@ -112,14 +115,13 @@ rating = st.sidebar.select_slider(
     value=3
 )
 
-
 # ======================================================
 # MAIN CONTENT
 # ======================================================
 col_left, col_right = st.columns([2, 1])
 
 # =========================
-# INPUT NUTRISI (INTEGER)
+# INPUT NUTRISI (DESIMAL)
 # =========================
 with col_left:
     st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -128,19 +130,19 @@ with col_left:
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        kalori = st.number_input("Kalori", min_value=0, value=0, step=1, format="%d")
-        protein = st.number_input("Protein (g)", min_value=0, value=0, step=1, format="%d")
-        serat = st.number_input("Serat (g)", min_value=0, value=0, step=1, format="%d")
+        kalori = st.number_input("Kalori", min_value=0.0, value=0.0, step=0.1)
+        protein = st.number_input("Protein (g)", min_value=0.0, value=0.0, step=0.1)
+        serat = st.number_input("Serat (g)", min_value=0.0, value=0.0, step=0.1)
 
     with c2:
-        karbohidrat = st.number_input("Karbohidrat (g)", min_value=0, value=0, step=1, format="%d")
-        lemak = st.number_input("Lemak (g)", min_value=0, value=0, step=1, format="%d")
-        gula = st.number_input("Gula (g)", min_value=0, value=0, step=1, format="%d")
+        karbohidrat = st.number_input("Karbohidrat (g)", min_value=0.0, value=0.0, step=0.1)
+        lemak = st.number_input("Lemak (g)", min_value=0.0, value=0.0, step=0.1)
+        gula = st.number_input("Gula (g)", min_value=0.0, value=0.0, step=0.1)
 
     with c3:
-        natrium = st.number_input("Natrium (mg)", min_value=0, value=0, step=1, format="%d")
-        kolesterol = st.number_input("Kolesterol (mg)", min_value=0, value=0, step=1, format="%d")
-        porsi = st.number_input("Porsi Sajian (g)", min_value=0, value=0, step=1, format="%d")
+        natrium = st.number_input("Natrium (mg)", min_value=0.0, value=0.0, step=1.0)
+        kolesterol = st.number_input("Kolesterol (mg)", min_value=0.0, value=0.0, step=1.0)
+        porsi = st.number_input("Porsi Sajian (g)", min_value=0.0, value=0.0, step=1.0)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -153,10 +155,10 @@ with col_right:
 
     if st.button("Prediksi Kesehatan", use_container_width=True):
 
-        data_input = np.array([[
-            float(kalori), float(protein), float(karbohidrat),
-            float(lemak), float(serat), float(gula),
-            float(natrium), float(kolesterol), float(porsi)
+        data_input = np.array([[ 
+            kalori, protein, karbohidrat,
+            lemak, serat, gula,
+            natrium, kolesterol, porsi
         ]])
 
         data_scaled = scaler.transform(data_input)
@@ -168,11 +170,12 @@ with col_right:
             st.markdown('<div class="result-unhealthy">❌ MAKANAN TIDAK SEHAT</div>', unsafe_allow_html=True)
 
         st.divider()
-        st.caption("📄 Ringkasan")
+        st.caption("📄 Ringkasan Informasi")
         st.write(f"**Nama:** {nama_makanan if nama_makanan else '-'}")
+        st.write(f"**Asal:** {asal_masakan}")
         st.write(f"**Jenis:** {jenis_makanan}")
         st.write(f"**Diet:** {jenis_diet}")
-        st.write(f"**Metode:** {metode_masak}")
+        st.write(f"**Metode Masak:** {metode_masak}")
         st.write(f"**Waktu Total:** {waktu_persiapan + waktu_memasak} menit")
         st.write(f"**Rating:** ⭐ {rating}/5")
 
@@ -183,6 +186,6 @@ with col_right:
 # ======================================================
 st.divider()
 st.caption(
-    "🔬 Model Machine Learning berbasis Random Forest / Gradient Boosting. "
-    "Prediksi hanya menggunakan data nutrisi, atribut lain bersifat informatif."
+    "🔬 Model Machine Learning berbasis Random Forest dan Gradient Boosting. "
+    "Prediksi dilakukan menggunakan data nutrisi, sedangkan atribut lainnya bersifat informatif."
 )
