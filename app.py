@@ -88,7 +88,7 @@ asal_masakan = st.sidebar.selectbox(
 
 jenis_makanan = st.sidebar.selectbox(
     "Jenis Makanan",
-    ["Makanan Utama", "Sarapan", "Cemilan", "Dinner", "Dessert"]
+    ["Lunch", "Breakfast", "Dinner", "Snack", "Dessert"]
 )
 
 jenis_diet = st.sidebar.selectbox(
