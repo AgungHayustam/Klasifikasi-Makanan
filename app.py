@@ -130,21 +130,22 @@ with col_left:
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        kalori = st.number_input("Kalori", min_value=0.0, value=0.0, step=0.1, format="%g")
-        protein = st.number_input("Protein (g)", min_value=0.0, value=0.0, step=0.1, format="%g")
-        serat = st.number_input("Serat (g)", min_value=0.0, value=0.0, step=0.1, format="%g")
+        kalori = round(st.number_input("Kalori", min_value=0.0, value=0.0, step=0.1, format="%g"), 2)
+        protein = round(st.number_input("Protein (g)", min_value=0.0, value=0.0, step=0.1, format="%g"), 2)
+        serat = round(st.number_input("Serat (g)", min_value=0.0, value=0.0, step=0.1, format="%g"), 2)
 
     with c2:
-        karbohidrat = st.number_input("Karbohidrat (g)", min_value=0.0, value=0.0, step=0.1, format="%g")
-        lemak = st.number_input("Lemak (g)", min_value=0.0, value=0.0, step=0.1, format="%g")
-        gula = st.number_input("Gula (g)", min_value=0.0, value=0.0, step=0.1, format="%g")
+        karbohidrat = round(st.number_input("Karbohidrat (g)", min_value=0.0, value=0.0, step=0.1, format="%g"), 2)
+        lemak = round(st.number_input("Lemak (g)", min_value=0.0, value=0.0, step=0.1, format="%g"), 2)
+        gula = round(st.number_input("Gula (g)", min_value=0.0, value=0.0, step=0.1, format="%g"), 2)
 
     with c3:
-        natrium = st.number_input("Natrium (mg)", min_value=0.0, value=0.0, step=1.0, format="%g")
-        kolesterol = st.number_input("Kolesterol (mg)", min_value=0.0, value=0.0, step=1.0, format="%g")
-        porsi = st.number_input("Porsi Sajian (g)", min_value=0.0, value=0.0, step=1.0, format="%g")
+        natrium = round(st.number_input("Natrium (mg)", min_value=0.0, value=0.0, step=1.0, format="%g"), 2)
+        kolesterol = round(st.number_input("Kolesterol (mg)", min_value=0.0, value=0.0, step=1.0, format="%g"), 2)
+        porsi = round(st.number_input("Porsi Sajian (g)", min_value=0.0, value=0.0, step=1.0, format="%g"), 2)
 
     st.markdown('</div>', unsafe_allow_html=True)
+
 
 # =========================
 # PREDIKSI & RINGKASAN
