@@ -153,4 +153,7 @@ with col2:
 # FOOTER
 # ======================================================
 st.divider()
-st.caption("Model Random Forest tanpa resampling | Digunakan untuk keperluan akademik")
+st.caption(
+    "🔬 Model Machine Learning berbasis Random Forest dan Gradient Boosting. "
+    "Prediksi dilakukan menggunakan data nutrisi, sedangkan atribut lainnya bersifat informatif."
+)
