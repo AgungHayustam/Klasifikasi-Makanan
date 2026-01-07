@@ -7,7 +7,7 @@ import joblib
 # ======================================================
 st.set_page_config(
     page_title="Klasifikasi Makanan Sehat",
-    page_icon="🥗",
+    page_icon="",
     layout="wide"
 )
 
@@ -60,7 +60,7 @@ st.markdown("""
 # ======================================================
 # HEADER
 # ======================================================
-st.markdown('<div class="title">🥗 Sistem Klasifikasi Makanan Sehat</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">Sistem Klasifikasi Makanan Sehat</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="subtitle">Prediksi makanan sehat dan tidak sehat berdasarkan kandungan nutrisi</div>',
     unsafe_allow_html=True
@@ -71,7 +71,7 @@ st.divider()
 # ======================================================
 # SIDEBAR – INFORMASI MAKANAN
 # ======================================================
-st.sidebar.header("📋 Informasi Makanan")
+st.sidebar.header("Informasi Makanan")
 
 nama_makanan = st.sidebar.text_input("Nama Makanan")
 jenis_makanan = st.sidebar.selectbox(
@@ -96,7 +96,7 @@ col1, col2 = st.columns([2, 1])
 # =========================
 with col1:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.subheader("🔢 Kandungan Nutrisi")
+    st.subheader("Kandungan Nutrisi")
 
     c1, c2, c3 = st.columns(3)
 
@@ -122,7 +122,7 @@ with col1:
 # =========================
 with col2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.subheader("🔍 Hasil Prediksi")
+    st.subheader("Hasil Prediksi")
 
     if st.button("Prediksi Kesehatan", use_container_width=True):
 
@@ -141,7 +141,7 @@ with col2:
             st.markdown('<div class="result-unhealthy">❌ MAKANAN TIDAK SEHAT</div>', unsafe_allow_html=True)
 
         st.divider()
-        st.caption("📄 Ringkasan")
+        st.caption("Ringkasan")
         st.write(f"**Nama:** {nama_makanan if nama_makanan else '-'}")
         st.write(f"**Jenis:** {jenis_makanan}")
         st.write(f"**Diet:** {jenis_diet}")
