@@ -7,7 +7,6 @@ import joblib
 # ======================================================
 st.set_page_config(
     page_title="Sistem Klasifikasi Makanan Sehat",
-    page_icon="🥗",
     layout="wide"
 )
 
@@ -18,43 +17,58 @@ model = joblib.load("model_makanan.pkl")
 scaler = joblib.load("scaler.pkl")
 
 # ======================================================
-# CUSTOM CSS – ACADEMIC STYLE
+# CUSTOM CSS
 # ======================================================
 st.markdown("""
 <style>
 .title {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 700;
-    color: #FFFFFF; /* PUTIH */
+    color: #FFFFFF;
 }
 .subtitle {
     font-size: 15px;
-    color: #D1D5DB; /* ABU TERANG */
-    margin-bottom: 25px;
+    color: #CFCFCF;
+    margin-bottom: 20px;
 }
 .card {
     background-color: #1E1E1E;
     padding: 22px;
-    border-radius: 12px;
+    border-radius: 14px;
     margin-bottom: 20px;
+}
+.result-healthy {
+    background-color: #1B5E20;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.result-unhealthy {
+    background-color: #B71C1C;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
 </style>
 """, unsafe_allow_html=True)
-
 
 # ======================================================
 # HEADER
 # ======================================================
 st.markdown('<div class="title">Sistem Klasifikasi Makanan Sehat</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="subtitle">Klasifikasi makanan sehat dan tidak sehat berdasarkan kandungan nutrisi menggunakan Machine Learning</div>',
+    '<div class="subtitle">Klasifikasi makanan sehat dan tidak sehat berdasarkan kandungan nutrisi</div>',
     unsafe_allow_html=True
 )
 
 st.divider()
 
 # ======================================================
-# SIDEBAR – INFORMASI MAKANAN
+# SIDEBAR – INFORMASI UMUM MAKANAN
 # ======================================================
 st.sidebar.header("Informasi Umum Makanan")
 
@@ -62,28 +76,30 @@ nama_makanan = st.sidebar.text_input("Nama Makanan")
 
 asal_makanan = st.sidebar.selectbox(
     "Asal Makanan",
-    ["Lokal", "Tradisional", "Internasional", "Cepat Saji", "Rumahan"]
+    ["Lokal", "Internasional"]
 )
 
 jenis_makanan = st.sidebar.selectbox(
     "Jenis Makanan",
-    ["Makanan Utama", "Sarapan", "Cemilan", "Makan Malam", "Dessert"]
+    ["Makanan Utama", "Sarapan", "Cemilan", "Dessert", "Minuman"]
 )
 
-prep_time = st.sidebar.number_input(
+waktu_persiapan = st.sidebar.number_input(
     "Waktu Persiapan (menit)",
     min_value=0,
     step=1
 )
 
-cook_time = st.sidebar.number_input(
+waktu_memasak = st.sidebar.number_input(
     "Waktu Memasak (menit)",
     min_value=0,
     step=1
 )
 
 rating = st.sidebar.select_slider(
-    "Rating Makanan", options=[1, 2, 3, 4, 5], value=3
+    "Rating Makanan",
+    options=[1, 2, 3, 4, 5],
+    value=3
 )
 
 # ======================================================
@@ -101,7 +117,7 @@ with col1:
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        kalori = st.number_input("Energi (Kalori)", min_value=0.0, step=1.0)
+        kalori = st.number_input("Energi (Kalori)", min_value=0.0, step=0.1)
         protein = st.number_input("Protein (g)", min_value=0.0, step=0.1)
         serat = st.number_input("Serat (g)", min_value=0.0, step=0.1)
 
@@ -118,7 +134,7 @@ with col1:
     st.markdown('</div>', unsafe_allow_html=True)
 
 # =========================
-# PREDIKSI
+# HASIL PREDIKSI
 # =========================
 with col2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -127,26 +143,32 @@ with col2:
     if st.button("Proses Klasifikasi", use_container_width=True):
 
         data = np.array([[ 
-            kalori, protein, karbohidrat,
-            lemak, serat, gula,
-            natrium, kolesterol, porsi
+            kalori,
+            protein,
+            karbohidrat,
+            lemak,
+            serat,
+            gula,
+            natrium,
+            kolesterol,
+            porsi
         ]])
 
         data_scaled = scaler.transform(data)
-        pred = model.predict(data_scaled)[0]
+        prediksi = model.predict(data_scaled)[0]
 
-        if pred == 1:
-            st.markdown('<div class="result-healthy">MAKANAN TERGOLONG SEHAT</div>', unsafe_allow_html=True)
+        if prediksi == 1:
+            st.markdown('<div class="result-healthy">✅ MAKANAN SEHAT</div>', unsafe_allow_html=True)
         else:
-            st.markdown('<div class="result-unhealthy">MAKANAN TERGOLONG TIDAK SEHAT</div>', unsafe_allow_html=True)
+            st.markdown('<div class="result-unhealthy">❌ MAKANAN TIDAK SEHAT</div>', unsafe_allow_html=True)
 
         st.divider()
-        st.caption("Informasi Tambahan")
+        st.caption("Ringkasan Informasi")
         st.write(f"**Nama Makanan:** {nama_makanan if nama_makanan else '-'}")
         st.write(f"**Asal Makanan:** {asal_makanan}")
         st.write(f"**Jenis Makanan:** {jenis_makanan}")
-        st.write(f"**Waktu Persiapan:** {prep_time} menit")
-        st.write(f"**Waktu Memasak:** {cook_time} menit")
+        st.write(f"**Waktu Persiapan:** {waktu_persiapan} menit")
+        st.write(f"**Waktu Memasak:** {waktu_memasak} menit")
         st.write(f"**Rating:** ⭐ {rating}/5")
 
     st.markdown('</div>', unsafe_allow_html=True)
@@ -157,5 +179,5 @@ with col2:
 st.divider()
 st.caption(
     "Sistem ini menggunakan model Machine Learning berbasis Random Forest dan Gradient Boosting. "
-    "Prediksi kesehatan makanan ditentukan berdasarkan atribut nutrisi, sedangkan informasi lainnya bersifat deskriptif."
+    "Prediksi kesehatan makanan ditentukan berdasarkan kandungan nutrisi."
 )
