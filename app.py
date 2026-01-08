@@ -25,40 +25,22 @@ st.markdown("""
 .title {
     font-size: 34px;
     font-weight: 700;
-    color: #2C2C2C;
+    color: #FFFFFF; /* PUTIH */
 }
 .subtitle {
     font-size: 15px;
-    color: #555555;
+    color: #D1D5DB; /* ABU TERANG */
     margin-bottom: 25px;
 }
 .card {
-    background-color: #FFFFFF;
+    background-color: #1E1E1E;
     padding: 22px;
     border-radius: 12px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
     margin-bottom: 20px;
-}
-.result-healthy {
-    background-color: #E8F5E9;
-    border-left: 6px solid #2E7D32;
-    padding: 15px;
-    border-radius: 6px;
-    color: #2E7D32;
-    font-weight: bold;
-    text-align: center;
-}
-.result-unhealthy {
-    background-color: #FDECEA;
-    border-left: 6px solid #C62828;
-    padding: 15px;
-    border-radius: 6px;
-    color: #C62828;
-    font-weight: bold;
-    text-align: center;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 # ======================================================
 # HEADER
